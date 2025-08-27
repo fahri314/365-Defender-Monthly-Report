@@ -491,7 +491,8 @@ class report:
             incident_id = incident.get("IncidentId")
 
             # Format last activity time
-            last_activity = last_activity.split('.')[0]
+            last_activity = last_activity.rstrip('Z')  # Remove the 'Z' character
+            last_activity = last_activity.split('.')[0]  # Remove the microsecond part
             last_activity = datetime.strptime(last_activity, "%Y-%m-%dT%H:%M:%S").strftime("%d-%m-%Y - %H:%M")
 
             incident_url = f"https://security.microsoft.com/incident2/{incident_id}/overview?tid={self.tenant_id}"
