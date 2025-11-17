@@ -418,8 +418,9 @@ class report:
         resolve_dist_table_data = ""
         # Iterate through sorted classifications and print the results
         for classification, incidents in sorted_resolves:
-            resolve_dist_table_data += f"{classifications_reverse[classification]}\t{len(incidents)}\n"
-            print(f"{classifications_reverse[classification]}\t{len(incidents)}")
+            if classification != 0:
+                resolve_dist_table_data += f"{classifications_reverse[classification]}\t{len(incidents)}\n"
+                print(f"{classifications_reverse[classification]}\t{len(incidents)}")
         # Save sorted resolve distribution data to Excel
         self.copy_to_excel(resolve_dist_table_data, "High Severity Resolve Dist")
 
